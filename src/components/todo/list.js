@@ -1,6 +1,9 @@
 import React from 'react';
 import If from './IF.js'
 import { useState } from 'react';
+import { ListGroup } from "react-bootstrap";
+import { Button } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 function TodoList(props) {
 const [flag , setFlag ] = useState(false);
 const [id , setId] = useState ('')
@@ -17,28 +20,38 @@ const editor =e=>{
 }
     return (
       <>
-      <ul>
+
+       
+      <ListGroup>
         {props.list.map(item => (
-          <li
+          <ListGroup.Item
             className={`complete-${item.complete.toString()}`}
             key={item._id}
+            action
+            variant={item.complete ? "warning" : "dark"}
           >
+              <Button variant="warning" onClick={()=>toggle(item._id)} value={item._id}>Edit</Button>{' '}
+            {/* <button onClick={()=>toggle(item._id)} value={item._id}>Edit</button> */}
+            <Button variant="dark"  id="delete" onClick={() => props.deleteItem(item._id)} >X</Button>{' '}
+            {/* <button id="delete" onClick={() => props.deleteItem(item._id)} >X</button> */}
             <span onClick={() => props.handleComplete(item._id)}>
-              {item.text} by {item.assignee} with difficulty {item.difficulty}, Due Date {item.date}
+                  {`     ${item.text}`} by {item.assignee} with difficulty {item.difficulty}, Due Date {item.date}
             </span>
-            <button onClick={()=>toggle(item._id)} value={item._id}>Edit</button>
-            <button id="delete" onClick={() => props.deleteItem(item._id)} >X</button>
-          </li>
+            
+          </ListGroup.Item>
         ))}
-      </ul>
+      </ListGroup>
       <If condition={flag}>
-      <form onSubmit= {editor}>
-      <label>
+      <Form onSubmit= {editor}>
+      <Form.Group controlId="formBasicEmail">
+      <Form.Label>
       <span>Edit Task</span>
-      <input type="text" name="text"   />
-      </label>
-      <button type='submit' >Submit Edit</button>
-      </form>
+      <Form.Control  type="text" name="text"   />
+      </Form.Label>
+      </Form.Group>
+    
+      <  Button variant="warning" type="submit" >Submit Edit</Button>
+      </Form>
   </If>
   </>
 
