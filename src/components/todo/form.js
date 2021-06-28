@@ -41,7 +41,7 @@ function TodoForm(props) {
             <input type="date" name="date" placeholder="Date" onChange={handleInputChange} />
           </label>
           </Form.Group>
-          <Button variant="dark" >Add Item</Button>
+          <Button variant="dark" type="submit">Add Item</Button>
         </Form>
       </>
     );
