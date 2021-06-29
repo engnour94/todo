@@ -30,6 +30,8 @@ const useAjax = () => {
     fetch ();
   }
 
+
+
   const _toggleComplete = (id)=>{
 
     let item = list.filter(i => i._id === id)[0] || {};
@@ -69,6 +71,37 @@ const useAjax = () => {
      
     }
 
+    const editor = (text , id)=>{
+      let item = list.filter ((item)=> item._id === id)[0] || {}
+  
+      if (item) {
+        item.text = text;
+        list.map (itm =>{
+          if (itm._id === id ){
+            return item 
+          }else {
+            return itm
+          }
+        })
+      const url2 = `${todoAPI}/${item._id}`
+      const fetch = async ()=>{
+        axios.put (url2,item ,{
+            headers: { 'Content-Type': 'application/json' },
+            cache:'no-cache',
+            mode: 'cors',
+            body: JSON.stringify(item)
+              
+            }).then (response =>setList ( list.map(listItem => listItem._id === item._id ? response.data : listItem)))
+            .catch(console.error);
+        
+    }
+    fetch ();
+  
+      }
+     
+    }
+
+
     const deleteItem =(id)=>{
 
         let item = list.filter(i => i._id === id)[0] || {};
@@ -87,7 +120,7 @@ const useAjax = () => {
       }
 
 
-    return [list,_getTodoItems , _toggleComplete,_addItem ,deleteItem];
+    return [list,_getTodoItems , _toggleComplete,_addItem ,deleteItem,editor];
 
 }
 

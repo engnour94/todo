@@ -9,7 +9,7 @@ import './todo.scss';
 
 // const todoAPI = 'https://api-js401.herokuapp.com/api/v1/todo';
 const ToDo = () => {
-  const [list,_getTodoItems  , _toggleComplete , _addItem ,deleteItem]= useAjax();
+  const [list,_getTodoItems  , _toggleComplete , _addItem ,deleteItem,editor]= useAjax();
  
 useEffect (_getTodoItems , [_getTodoItems]);
   
@@ -38,6 +38,7 @@ document.title = `ToDo : ${list.filter((item) => !item.complete).length}`;
             list={list}
             handleComplete={_toggleComplete}
             deleteItem = {deleteItem}
+            editor = {editor}
     
           />
         </div>
