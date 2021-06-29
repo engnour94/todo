@@ -25,7 +25,7 @@ The following user/developer stories detail the major functionality for this pha
 ## Links
 
 * [Repo link](https://github.com/engnour94/todo)
-* [Deployed link](https://todo-by-nour.netlify.app/)
+* [Deployed link](https://60da72f028641d00b305c9df--keen-aryabhata-e8a96a.netlify.app/)
 
 ## UML
 
