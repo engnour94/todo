@@ -1,9 +1,11 @@
 import React from 'react';
 import If from './IF.js'
 import { useState } from 'react';
-import { ListGroup } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
+import { Badge } from "react-bootstrap";
+import{Toast} from "react-bootstrap";
+
 function TodoList(props) {
 const [flag , setFlag ] = useState(false);
 const [id , setId] = useState ('')
@@ -20,27 +22,34 @@ const editor =e=>{
 }
     return (
       <>
-
-       
-      <ListGroup>
         {props.list.map(item => (
-          <ListGroup.Item
-            className={`complete-${item.complete.toString()}`}
-            key={item._id}
-            action
-            variant={item.complete ? "warning" : "dark"}
-          >
-              <Button variant="warning" onClick={()=>toggle(item._id)} value={item._id}>Edit</Button>{' '}
-            {/* <button onClick={()=>toggle(item._id)} value={item._id}>Edit</button> */}
-            <Button variant="dark"  id="delete" onClick={() => props.deleteItem(item._id)} >X</Button>{' '}
-            {/* <button id="delete" onClick={() => props.deleteItem(item._id)} >X</button> */}
-            <span onClick={() => props.handleComplete(item._id)}>
-                  {`     ${item.text}`} by {item.assignee} with difficulty {item.difficulty}, Due Date {item.date}
-            </span>
+        <Toast  
+        key={item._id}
+        style={{ minWidth: '500px',maxWidth:'100%' }}
+        onClose={() => props.deleteItem(item._id)} value={item._id}
+
+        >
+           <Toast.Header>
+           <Badge pill variant={item.complete ? 'danger' : 'success'} > {item.complete ? 'completed' : 'pending'} </Badge>{' '}
+        
+            <strong className="mr-auto ml-4" >  {item.assignee}  </strong>
+          
             
-          </ListGroup.Item>
+          </Toast.Header>
+
+          <Toast.Body onClick={() => props.handleComplete(item._id)} style={{ cursor: 'pointer' }}>
+            <h3 className={`ml-3 ${item.complete ? 'text-muted text-decoration-line-through' : ''}`}>{item.text}</h3>
+            <br />
+            <p className="float-right" style={{ fontSize: '90%' }}>
+              Difficulty: {item.difficulty}
+            </p>
+            <br />
+          </Toast.Body>
+           
+        
+          </Toast>
         ))}
-      </ListGroup>
+     
       <If condition={flag}>
       <Form onSubmit= {editor}>
       <Form.Group controlId="formBasicEmail">
@@ -53,6 +62,7 @@ const editor =e=>{
       <  Button variant="warning" type="submit" >Submit Edit</Button>
       </Form>
   </If>
+
   </>
 
      

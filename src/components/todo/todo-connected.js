@@ -1,77 +1,31 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect} from 'react';
 import TodoForm from './form.js';
 import TodoList from './list.js';
-
+import useAjax from '../../hooks/useAjax';
+// import{Navbar} from "react-bootstrap";
 import './todo.scss';
 
-const todoAPI = 'https://api-js401.herokuapp.com/api/v1/todo';
 
-
+// const todoAPI = 'https://api-js401.herokuapp.com/api/v1/todo';
 const ToDo = () => {
-
-  const [list, setList] = useState([]);
-
-  const _addItem = (item) => {
-    item.due = new Date();
-    fetch(todoAPI, {
-      method: 'post',
-      mode: 'cors',
-      cache: 'no-cache',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(item)
-    })
-      .then(response => response.json())
-      .then(savedItem => {
-        setList([...list, savedItem])
-      })
-      .catch(console.error);
-  };
-
-  const _toggleComplete = id => {
-
-    let item = list.filter(i => i._id === id)[0] || {};
-
-    if (item._id) {
-
-      item.complete = !item.complete;
-
-      let url = `${todoAPI}/${id}`;
-
-      fetch(url, {
-        method: 'put',
-        mode: 'cors',
-        cache: 'no-cache',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(item)
-      })
-        .then(response => response.json())
-        .then(savedItem => {
-          setList(list.map(listItem => listItem._id === item._id ? savedItem : listItem));
-        })
-        .catch(console.error);
-    }
-  };
-
-  const _getTodoItems = () => {
-    fetch(todoAPI, {
-      method: 'get',
-      mode: 'cors',
-    })
-      .then(data => data.json())
-      .then(data => setList(data.results))
-      .catch(console.error);
-  };
-
-  useEffect(_getTodoItems, []);
-
+  const [list,_getTodoItems  , _toggleComplete , _addItem ,deleteItem]= useAjax();
+ 
+useEffect (_getTodoItems , [_getTodoItems]);
+  
+document.title = `ToDo : ${list.filter((item) => !item.complete).length}`;
   return (
-    <>
-      <header>
-        <h2>
-          There are {list.filter(item => !item.complete).length} Items To Complete
+     <>
+     
+
+    <header >
+      
+        <h2  style={{'font-size':'20px', 'maxWidth':'90%', 'margin-top':'10px',"background":"#353a40" , 'margin-right':'auto','margin-left':'auto','color':'white','hight':'300px','padding':'10px' }}>
+        {`To Do List Manager ( ${list.filter(item => !item.complete).length} )  `} 
         </h2>
       </header>
+ 
+
 
       <section className="todo">
 
@@ -83,6 +37,8 @@ const ToDo = () => {
           <TodoList
             list={list}
             handleComplete={_toggleComplete}
+            deleteItem = {deleteItem}
+    
           />
         </div>
       </section>

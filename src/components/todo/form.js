@@ -1,23 +1,24 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
 import { Form } from "react-bootstrap";
 import { Button } from "react-bootstrap";
+import useForm from'../../hooks/useForm'
+import { Card } from 'react-bootstrap';
 
 function TodoForm(props) {
-  const [item,setItem]=useState({})
-  const handleInputChange = e => {
-    setItem({...item, [e.target.name]: e.target.value });
-  };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    e.target.reset();
+  const [handleInputChange , handleSubmit] = useForm(callback);
+
+
+  function callback (item){
     props.handleSubmit(item);
-    const newItem = {};
-    setItem({newItem});
-  };
+
+  }
+
     return (
       <>
-        <h3>Add Item</h3>
+      <Card style={{'margin-left':'40px','margin-right':'40px'}}>
+      <Card.Header as="h3">Add To Do Item</Card.Header>
+      <Card.Body>
         <Form onSubmit={handleSubmit}>
         <Form.Group controlId="formBasicEmail">
           <label>
@@ -30,7 +31,7 @@ function TodoForm(props) {
           </label>
           <label>
             <span>Difficulty Rating</span>
-            <input defaultValue="1" type="range" min="1" max="5" name="difficulty" onChange={handleInputChange} />
+            <input defaultValue="1" type="range" min="1" max="5" name="difficulty" onChange={handleInputChange} style={{'color':'#227aff'}} />
           </label>
           <label>
             <span>Assigned To</span>
@@ -41,8 +42,10 @@ function TodoForm(props) {
             <input type="date" name="date" placeholder="Date" onChange={handleInputChange} />
           </label>
           </Form.Group>
-          <Button variant="dark" type="submit">Add Item</Button>
+          <Button variant="primary" type="submit">Add Item</Button>
         </Form>
+        </Card.Body>
+        </Card>
       </>
     );
   
