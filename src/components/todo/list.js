@@ -22,6 +22,18 @@ const editor =e=>{
 }
     return (
       <>
+       <If condition={flag}>
+      <Form onSubmit= {editor}>
+      <Form.Group controlId="formBasicEmail">
+      <Form.Label>
+      <span>Edit Task</span>
+      <Form.Control  type="text" name="text"   />
+      </Form.Label>
+      </Form.Group>
+    
+      <  Button variant="warning" type="submit" >Submit Edit</Button>
+      </Form>
+  </If>
         {props.list.map(item => (
         <Toast  
         key={item._id}
@@ -44,24 +56,14 @@ const editor =e=>{
               Difficulty: {item.difficulty}
             </p>
             <br />
+            <Button variant="warning" onClick={()=>toggle(item._id)} value={item._id}>Edit</Button>{' '}
           </Toast.Body>
            
         
           </Toast>
         ))}
      
-      <If condition={flag}>
-      <Form onSubmit= {editor}>
-      <Form.Group controlId="formBasicEmail">
-      <Form.Label>
-      <span>Edit Task</span>
-      <Form.Control  type="text" name="text"   />
-      </Form.Label>
-      </Form.Group>
-    
-      <  Button variant="warning" type="submit" >Submit Edit</Button>
-      </Form>
-  </If>
+     
 
   </>
 

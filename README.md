@@ -29,6 +29,11 @@ The following user/developer stories detail the major functionality for this pha
 
 
 
+* [Repo link](https://github.com/engnour94/todo)
+* [Deployed link phase 1](https://60da72f028641d00b305c9df--keen-aryabhata-e8a96a.netlify.app/)
+* [Deployed link phase 2](https://todo-by-nour.netlify.app/)
+
+
 ## UML
 
 ![UML](todo.jpg)
