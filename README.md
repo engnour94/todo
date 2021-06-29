@@ -25,13 +25,14 @@ The following user/developer stories detail the major functionality for this pha
 ## Links
 
 * [Repo link](https://github.com/engnour94/todo)
-* [Deployed link](https://60d8fb1c9f796fea7c8b25ac--romantic-jepsen-68e11a.netlify.app/)
+* [Deployed link](https://romantic-jepsen-68e11a.netlify.app/)
 
 ## UML
 
 ![UML](todo.jpg)
 
----
+
+
 ## Phase 2 Requirements
 In Phase 2, we’re going to connect the To Do Manager to a deployed API, backed by a database. The core functionality and stories do not change (reference Phase 1), but a new one has been added to note this shift in persistence.
 
@@ -39,4 +40,6 @@ In Phase 2, we’re going to connect the To Do Manager to a deployed API, backed
 * As a user, I would like my To Do Items to be permanently stored so that I can re-access them at any time, using any device
 
 ![UML](todo1.jpg)
+
+
 
