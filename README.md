@@ -7,6 +7,11 @@
 
 To Do List Manager is an application designed for creating and organizing a “To Do” list in the browser.
 
+## Links
+
+* [Repo link](https://github.com/engnour94/todo)
+* [Deployed link](https://todo-by-nour.netlify.app/)
+
 ## Phase 1 Requirements
 Today, we begin the first of a 4-phase build of the To Do List Manager, a web-based task manager application, written in React. In this first phase, our goal is to setup a foundational system using React hooks that we can build upon in later phases, adding databases, logins, and more advanced features.
 
@@ -22,16 +27,14 @@ The following user/developer stories detail the major functionality for this pha
 
 * As a user, I would like to edit an existing to do item
 
-## Links
 
-* [Repo link](https://github.com/engnour94/todo)
-* [Deployed link](https://60d8fb1c9f796fea7c8b25ac--romantic-jepsen-68e11a.netlify.app/)
 
 ## UML
 
 ![UML](todo.jpg)
 
----
+
+
 ## Phase 2 Requirements
 In Phase 2, we’re going to connect the To Do Manager to a deployed API, backed by a database. The core functionality and stories do not change (reference Phase 1), but a new one has been added to note this shift in persistence.
 
@@ -39,4 +42,6 @@ In Phase 2, we’re going to connect the To Do Manager to a deployed API, backed
 * As a user, I would like my To Do Items to be permanently stored so that I can re-access them at any time, using any device
 
 ![UML](todo1.jpg)
+
+
 
