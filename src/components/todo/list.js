@@ -5,7 +5,9 @@ import { Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import { Badge } from "react-bootstrap";
 import{Toast} from "react-bootstrap";
-
+import {SettingsContext} from './settings-context';
+import {  Pagination } from  'react-bootstrap'
+import { useContext } from 'react';
 function TodoList(props) {
 const [flag , setFlag ] = useState(false);
 const [id , setId] = useState ('')
@@ -20,6 +22,29 @@ const editor =e=>{
  let newUpdate = e.target.text.value
  props.editor (newUpdate , id)
 }
+const context = useContext(SettingsContext)
+
+const maxItems = context.itemPerPage;
+
+const [currentPage, setCurrentPage] = useState(1);
+ 
+  const numOfPages = props.list.length / maxItems + 1;
+  const last = currentPage * context.itemPerPage;
+  const first = last - context.itemPerPage;
+  const currentTasks = props.list.slice(first, last);
+  
+  let active = currentPage;
+  let items = [];
+  for (let number = 1; number <= numOfPages; number++) {
+    items.push(
+      <Pagination.Item key={number} active={number === active}>
+        {number}
+      </Pagination.Item>,
+    );
+  }
+
+
+
     return (
       <>
        <If condition={flag}>
@@ -34,7 +59,7 @@ const editor =e=>{
       <  Button variant="warning" type="submit" >Submit Edit</Button>
       </Form>
   </If>
-        {props.list.map(item => (
+        {currentTasks.map(item => (
         <Toast  
         key={item._id}
         style={{ minWidth: '500px',maxWidth:'100%' }}
@@ -62,7 +87,21 @@ const editor =e=>{
         
           </Toast>
         ))}
-     
+     <Pagination>
+            <Pagination.Prev
+              disabled={active === 1 ? true : false}
+              onClick={() => {
+                setCurrentPage(currentPage - 1);
+              }}
+            />
+            {items}
+            <Pagination.Next
+              disabled={active > numOfPages - 1 ? true : false}
+              onClick={() => {
+                setCurrentPage(currentPage + 1);
+              }}
+            />
+          </Pagination>
      
 
   </>

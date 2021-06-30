@@ -10,7 +10,9 @@ To Do List Manager is an application designed for creating and organizing a “T
 ## Links
 
 * [Repo link](https://github.com/engnour94/todo)
-* [Deployed link](https://todo-by-nour.netlify.app/)
+* [Deployed link phase 1](https://60da72f028641d00b305c9df--keen-aryabhata-e8a96a.netlify.app/)
+* [Deployed link phase 2](https://60dbc8c68cf74c15374f199a--awesome-fermat-00f7d2.netlify.app/)
+* [Deployed link phase 3]()
 
 ## Phase 1 Requirements
 Today, we begin the first of a 4-phase build of the To Do List Manager, a web-based task manager application, written in React. In this first phase, our goal is to setup a foundational system using React hooks that we can build upon in later phases, adding databases, logins, and more advanced features.
@@ -29,16 +31,12 @@ The following user/developer stories detail the major functionality for this pha
 
 
 
-* [Repo link](https://github.com/engnour94/todo)
-* [Deployed link phase 1](https://60da72f028641d00b305c9df--keen-aryabhata-e8a96a.netlify.app/)
-* [Deployed link phase 2](https://todo-by-nour.netlify.app/)
-
-
 ## UML
 
 ![UML](todo.jpg)
 
 
+---
 
 ## Phase 2 Requirements
 In Phase 2, we’re going to connect the To Do Manager to a deployed API, backed by a database. The core functionality and stories do not change (reference Phase 1), but a new one has been added to note this shift in persistence.
@@ -48,5 +46,13 @@ In Phase 2, we’re going to connect the To Do Manager to a deployed API, backed
 
 ![UML](todo1.jpg)
 
+---
+## Phase 3 Requirements
+In Phase 3, we’d like to extend the functionality of the application by potentially allowing users to set a few configuration options to change how the application behaves. The user stories from Phases 1 and 2 remain unchanged. For this phase, we are now adding the following new user stories.
 
+* As a user, I would like to see my To Do List Items a few at a time so that I don’t have to wade through them all
+* As a user, I would like my default view to only be “Incomplete” Items so that I can quickly determine what I have to do.
+* As a user, I would like my list sorted by difficulty so that I can more easily prioritize
+* As a user, I would like the option to change my default preferences with regards to how many Items I see per page, which items are filtered, and how they are sorted
 
+![UML](todo1.jpg)
