@@ -11,6 +11,54 @@ import { useContext } from 'react';
 function TodoList(props) {
 const [flag , setFlag ] = useState(false);
 const [id , setId] = useState ('')
+
+let list = props.list
+const context = useContext(SettingsContext)
+
+const maxItems = context.itemPerPage;
+
+const [currentPage, setCurrentPage] = useState(1);
+if (context.completed){
+  list = list.filter((task) => !task.complete);
+}
+
+  
+const last = currentPage * context.itemPerPage;
+const first = last - context.itemPerPage;
+
+if (context.sortBy === 'difficulty'){
+  list.sort ((a,b)=> {
+    if (a.difficulty && b.difficulty){
+      if (a.difficulty > b.difficulty) return 1
+      else if (a.difficulty < b.difficulty) return -1
+      else if (a.difficulty === b.difficulty) return 0
+    }
+  })
+}
+else if (context.sortBy === 'assignee'){
+  list.sort ((a,b)=> {
+    if (a.assignee && b.assignee){
+      if (a.assignee.toLowerCase()  > b.assignee.toLowerCase() ) return 1
+      else if (a.assignee.toLowerCase() < b.assignee.toLowerCase() ) return -1
+      else if (a.assignee.toLowerCase()  === b.assignee.toLowerCase() ) return 0
+    }
+  })
+}
+else if (context.sortBy === 'text'){
+  list.sort ((a,b)=> {
+    if (a.text && b.text){
+      if (a.text.toLowerCase()  > b.text.toLowerCase() ) return 1
+      else if (a.text.toLowerCase() < b.text.toLowerCase() ) return -1
+      else if (a.text.toLowerCase()  === b.text.toLowerCase() ) return 0
+    }
+  })
+}
+ 
+let currentTasks = list.slice(first, last);
+let numOfPages =(list.length / maxItems )
+context.setTaskSum(list.length);
+// let  numOfPages = list.length / maxItems + 1;
+
 const toggle = (id) =>{
   setFlag (!flag);
   setId (id)
@@ -22,16 +70,9 @@ const editor =e=>{
  let newUpdate = e.target.text.value
  props.editor (newUpdate , id)
 }
-const context = useContext(SettingsContext)
 
-const maxItems = context.itemPerPage;
-
-const [currentPage, setCurrentPage] = useState(1);
  
-  const numOfPages = props.list.length / maxItems + 1;
-  const last = currentPage * context.itemPerPage;
-  const first = last - context.itemPerPage;
-  const currentTasks = props.list.slice(first, last);
+
   
   let active = currentPage;
   let items = [];
@@ -62,7 +103,7 @@ const [currentPage, setCurrentPage] = useState(1);
         {currentTasks.map(item => (
         <Toast  
         key={item._id}
-        style={{ minWidth: '500px',maxWidth:'100%' }}
+        style={{ minWidth: '200px',maxWidth:'50%' }}
         onClose={() => props.deleteItem(item._id)} value={item._id}
 
         >
