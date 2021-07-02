@@ -55,4 +55,4 @@ In Phase 3, we’d like to extend the functionality of the application by potent
 * As a user, I would like my list sorted by difficulty so that I can more easily prioritize
 * As a user, I would like the option to change my default preferences with regards to how many Items I see per page, which items are filtered, and how they are sorted
 
-![UML](todo1.jpg)
+![UML](todo2.jpg)
