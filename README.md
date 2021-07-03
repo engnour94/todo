@@ -15,6 +15,7 @@ To Do List Manager is an application designed for creating and organizing a “T
 * [Deployed link phase 3](https://60df7f23650c2e66926e0551--gallant-cori-f97a57.netlify.app/)
 * [Deployed link phase 4]()
 
+
 ## Phase 1 Requirements
 Today, we begin the first of a 4-phase build of the To Do List Manager, a web-based task manager application, written in React. In this first phase, our goal is to setup a foundational system using React hooks that we can build upon in later phases, adding databases, logins, and more advanced features.
 
