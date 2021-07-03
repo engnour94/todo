@@ -8,10 +8,14 @@ import{Toast} from "react-bootstrap";
 import {SettingsContext} from './settings-context';
 import {  Pagination } from  'react-bootstrap'
 import { useContext } from 'react';
+import Acl from './acl.jsx'
+import { AuthContext } from './auth-context';
+
+
 function TodoList(props) {
 const [flag , setFlag ] = useState(false);
 const [id , setId] = useState ('')
-
+const authContext = useContext (AuthContext)
 let list = props.list
 const context = useContext(SettingsContext)
 
@@ -104,7 +108,8 @@ const editor =e=>{
         <Toast  
         key={item._id}
         style={{ minWidth: '200px',maxWidth:'50%' }}
-        onClose={() => props.deleteItem(item._id)} value={item._id}
+        // onClose={() => props.deleteItem(item._id)} value={item._id}
+        onClose={() =>authContext.user.capabilities.includes('delete')? props.deleteItem(item._id) : false} value={item._id}
 
         >
            <Toast.Header>
@@ -115,14 +120,16 @@ const editor =e=>{
             
           </Toast.Header>
 
-          <Toast.Body onClick={() => props.handleComplete(item._id)} style={{ cursor: 'pointer' }}>
+          <Toast.Body onClick={() =>authContext.user.capabilities.includes('update')? props.handleComplete(item._id) : false} style={{ cursor: 'pointer' }}>
             <h3 className={`ml-3 ${item.complete ? 'text-muted text-decoration-line-through' : ''}`}>{item.text}</h3>
             <br />
             <p className="float-right" style={{ fontSize: '90%' }}>
               Difficulty: {item.difficulty}
             </p>
             <br />
+            <Acl capability="update">
             <Button variant="warning" onClick={()=>toggle(item._id)} value={item._id}>Edit</Button>{' '}
+            </Acl>
           </Toast.Body>
            
         
