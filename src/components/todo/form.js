@@ -3,7 +3,7 @@ import { Form } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import useForm from'../../hooks/useForm'
 import { Card } from 'react-bootstrap';
-import ContentSetting from './settings.jsx'
+
 
 function TodoForm(props) {
 
@@ -47,7 +47,7 @@ function TodoForm(props) {
         </Form>
         </Card.Body>
         </Card>
-        <ContentSetting />
+      
       </>
     );
   

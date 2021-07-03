@@ -3,6 +3,8 @@ import React, { useEffect} from 'react';
 import TodoForm from './form.js';
 import TodoList from './list.js';
 import useAjax from '../../hooks/useAjax';
+import Acl from './acl.jsx'
+import ContentSetting from './settings'
 // import{Navbar} from "react-bootstrap";
 import './todo.scss';
 
@@ -29,10 +31,16 @@ document.title = `ToDo : ${list.filter((item) => !item.complete).length}`;
 
       <section className="todo">
 
+      <Acl capability="create">
         <div>
           <TodoForm handleSubmit={_addItem} />
         </div>
-
+        </Acl>
+          <div>
+          <Acl capability="read">
+          <ContentSetting />
+        </Acl>
+          </div>
         <div>
           <TodoList
             list={list}

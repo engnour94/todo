@@ -13,6 +13,8 @@ To Do List Manager is an application designed for creating and organizing a “T
 * [Deployed link phase 1](https://60da72f028641d00b305c9df--keen-aryabhata-e8a96a.netlify.app/)
 * [Deployed link phase 2](https://60dbc8c68cf74c15374f199a--awesome-fermat-00f7d2.netlify.app/)
 * [Deployed link phase 3](https://60df7f23650c2e66926e0551--gallant-cori-f97a57.netlify.app/)
+* [Deployed link phase 4]()
+
 
 ## Phase 1 Requirements
 Today, we begin the first of a 4-phase build of the To Do List Manager, a web-based task manager application, written in React. In this first phase, our goal is to setup a foundational system using React hooks that we can build upon in later phases, adding databases, logins, and more advanced features.
@@ -56,3 +58,17 @@ In Phase 3, we’d like to extend the functionality of the application by potent
 * As a user, I would like the option to change my default preferences with regards to how many Items I see per page, which items are filtered, and how they are sorted
 
 ![UML](todo2.jpg)
+ 
+ ---
+
+## Phase 4 Requirements
+In Phase 4, we’d like to extend the functionality of the application by requiring users be logged in to view items and also restrict access based on user type. The user stories from Phases 1, 2 and 3 remain unchanged. For this phase, we are now adding the following new user stories.
+
+* As a user, I want to provide a way for other users to create new accounts
+* As a user, I want to provide a way for all users to login to their account
+* As a user, I want to make sure that my To Do items are only viewable to users that have logged in with a valid account.
+* As a user, I want to ensure that only fellow users that are allowed to “create”, based on their user type, can add new To Do Items
+* As a user, I want to ensure that only fellow users that are allowed to “update”, based on their user type, can mark To Do Items complete
+* As a user, I want to ensure that only fellow users that are allowed to “delete”, based on their user type, can delete new To Do Items
+
+![UML](todo3.jpg)
