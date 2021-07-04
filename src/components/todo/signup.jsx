@@ -31,14 +31,14 @@ function Register (){
             <Form onSubmit={submitHandler}>
                 <Modal.Body>
 
-                    <Form.Label>User Name</Form.Label>
-                    <Form.Control type='text' name='username' placeholder="please enter a unique username"/>
+                    <Form.Label>Username</Form.Label>
+                    <Form.Control type='text' name='username' placeholder="Please enter a unique username"/>
 
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" name='email' placeholder="email should have a @ symbol in it"/>
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control type="email" name='email' placeholder="Should have a @ symbol in it"/>
 
-                    <Form.Label>PassWord</Form.Label>
-                    <Form.Control type="password" name='password' placeholder="please Enter a strong password"/>
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control type="password" name='password' placeholder="Password"/>
 
                     <Form.Label>Role</Form.Label>
                     <Form.Control as="select" name="role" >
